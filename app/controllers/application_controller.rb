@@ -20,6 +20,15 @@ class ApplicationController < ActionController::Base
   end
 
   def payment_results
+    @user_apr = params[:user_apr].to_f / 100
+    @user_years = params[:user_years].to_f
+    @user_pv = params[:user_pv].to_f
+
+    @monthly_apr = @user_apr / 12
+    @monthly_periods = @user_years * 12
+
+    @monthly_payment = (@monthly_apr * @user_pv) / (1 - (1 + @monthly_apr) ** -@monthly_periods)
+
     render({ :template => "calculation_template/payment_results.html.erb" })
   end
 
