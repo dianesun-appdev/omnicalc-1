@@ -12,7 +12,9 @@
     <dd><%= "$#{sprintf('%.2f', @user_pv)}" %></dd>
 
   <dt>Payment</dt>
-    <dd><%= "$#{@monthly_payment.round(2)}" %></dd>
-
+    <dd><%= "#{@monthly_payment.to_s(:currency)}" %></dd>
 
 </dl>
+  
+<br>
+<a href = "/payment/new">Calculate another payment</a>
